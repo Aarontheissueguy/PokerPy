@@ -1,5 +1,5 @@
 import helpers
-import table
+#import table
 import random
 player_count = 4
 
@@ -29,10 +29,11 @@ class Dealer:
         self.save_data()
 
     def newround(self):
+        print("newround")
         self.player = []
         for p in range(player_count):
-            self.player.append([])
-        self.table = [0,[]]
+            self.player.append([[],[0],[]]) #private cards, budget, role
+        self.table = [0,[]] #pot, open cards
         self.round = [0,0] # The total rounds played and the information which players turn it is
         self.cardlist = []
         for color in ["cross","spades","peak","diamonds"]:
@@ -41,12 +42,12 @@ class Dealer:
         self.save_data()
 
     def dealcards(self,count):
+        self.__init__()
         cards = []
         for num in range(count):
             card = random.choice(self.cardlist)
             cards.append(card)
             self.cardlist.remove(card)
-
         self.save_data()
 
         return(cards)
