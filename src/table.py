@@ -31,6 +31,14 @@ class Table:
                 self.player[count][0].append(card)
                 self.save_data()
 
+    def next(self):
+        self.__init__()
+        if self.round[1] != len(self.player) - 1:
+            self.round[1] += 1
+        else:
+            self.round[0] += 1
+            self.round[1] = 0
+        self.save_data()
 
     def save_data(self):
         self.table = [self.pot,self.open_cards]
